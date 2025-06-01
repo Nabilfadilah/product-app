@@ -1,48 +1,39 @@
-<?php include '../config/database.php'; ?>
-<!DOCTYPE html>
-<html lang="en">
+<?php
+// include 'templates/header.php';
+include(__DIR__ . '/templates/header.php');
+?>
 
-<head>
-    <meta charset="UTF-8" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Daftar Produk</title>
-</head>
-
-<body class="bg-gray-100 p-8">
-    <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
-        <div class="flex justify-between items-center mb-4">
-            <h1 class="text-2xl font-bold">Daftar Produk</h1>
-            <a href="create.php" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Tambah Produk</a>
-        </div>
-        <table class="w-full table-auto border border-gray-300">
-            <thead>
-                <tr class="bg-gray-200">
-                    <th class="border px-4 py-2">Nama</th>
-                    <th class="border px-4 py-2">Kategori</th>
-                    <th class="border px-4 py-2">Harga</th>
-                    <th class="border px-4 py-2">Stok</th>
-                    <th class="border px-4 py-2">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $result = $conn->query("SELECT * FROM products ORDER BY created_at DESC");
-                while ($row = $result->fetch_assoc()):
-                ?>
-                    <tr>
-                        <td class="border px-4 py-2"><?= htmlspecialchars($row['name']) ?></td>
-                        <td class="border px-4 py-2"><?= htmlspecialchars($row['category']) ?></td>
-                        <td class="border px-4 py-2">Rp <?= number_format($row['price'], 2) ?></td>
-                        <td class="border px-4 py-2"><?= $row['stock'] ?></td>
-                        <td class="border px-4 py-2">
-                            <a href="edit.php?id=<?= $row['id'] ?>" class="text-blue-500">Edit</a> |
-                            <a href="delete.php?id=<?= $row['id'] ?>" onclick="return confirm('Yakin ingin hapus?')" class="text-red-500">Hapus</a>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
+<!-- Hero Section -->
+<section class="bg-gray-100 py-20">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Selamat Datang di Percetakan Aliza</h1>
+        <p class="text-gray-600 text-lg md:text-xl mb-6">Melayani berbagai kebutuhan cetak Anda dengan kualitas terbaik dan harga terjangkau.</p>
+        <a href="products.php" class="bg-blue-600 text-white px-6 py-3 rounded-md text-lg hover:bg-blue-700 transition">Lihat Produk</a>
     </div>
-</body>
+</section>
 
-</html>
+<!-- About Section -->
+<section class="bg-white py-16">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+        <img src="assets/images/bg2.jpg" alt="Tentang Kami" class="w-full rounded-lg shadow-md">
+        <div>
+            <h2 class="text-3xl font-semibold text-gray-800 mb-4">Tentang Percetakan Aliza</h2>
+            <p class="text-gray-600 leading-relaxed mb-4">Percetakan Aliza merupakan usaha percetakan yang berdiri sejak 2020. Kami menyediakan layanan cetak seperti brosur, undangan, banner, stiker, dan lain-lain. Kualitas dan kepuasan pelanggan adalah prioritas kami.</p>
+            <a href="about.php" class="text-blue-600 hover:underline font-medium">Baca selengkapnya</a>
+        </div>
+    </div>
+</section>
+
+<!-- Contact CTA -->
+<section class="bg-blue-600 text-white py-16">
+    <div class="max-w-4xl mx-auto text-center px-4">
+        <h2 class="text-3xl font-bold mb-4">Butuh Bantuan atau Konsultasi Cetak?</h2>
+        <p class="text-lg mb-6">Hubungi kami sekarang dan dapatkan penawaran terbaik untuk kebutuhan cetak Anda.</p>
+        <a href="https://wa.me/6281234567890" target="_blank" class="bg-white text-blue-600 px-6 py-3 rounded-md font-semibold hover:bg-gray-100 transition">Hubungi via WhatsApp</a>
+    </div>
+</section>
+
+<?php
+// include 'templates/footer.php'; 
+include(__DIR__ . '/templates/footer.php');
+?>
